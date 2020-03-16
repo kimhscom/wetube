@@ -4,7 +4,7 @@ export const videos = [
         title: "Video awesome",
         description: "This is something I love",
         view: 24,
-        videoFile: "https://archive.org/details/BigBuckBunny_124",
+        videoFile: "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
         creator: {
             id: 121212,
             name: "Hyunsu",
@@ -16,7 +16,7 @@ export const videos = [
         title: "Video super",
         description: "This is something I love",
         view: 24,
-        videoFile: "https://archive.org/details/BigBuckBunny_124",
+        videoFile: "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
         creator: {
             id: 121212,
             name: "Hyunsu",
@@ -28,7 +28,7 @@ export const videos = [
         title: "Video nice",
         description: "This is something I love",
         view: 24,
-        videoFile: "https://archive.org/details/BigBuckBunny_124",
+        videoFile: "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
         creator: {
             id: 121212,
             name: "Hyunsu",
@@ -40,7 +40,7 @@ export const videos = [
         title: "Video perfect",
         description: "This is something I love",
         view: 24,
-        videoFile: "https://archive.org/details/BigBuckBunny_124",
+        videoFile: "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
         creator: {
             id: 121212,
             name: "Hyunsu",
