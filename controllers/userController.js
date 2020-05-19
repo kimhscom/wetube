@@ -14,7 +14,6 @@ export const postJoin = async (req, res, next) => {
     res.status(400);
     res.render("join", { pageTitle: "Join" });
   } else {
-    // To Do: Register
     try {
       const user = await User({
         name,
@@ -37,8 +36,12 @@ export const postLogin = passport.authenticate("local", {
   successRedirect: routes.home,
 });
 
+export const githubLoginCallback = (accessToken, refreshToken, profile, cb) => {
+  console.log(accessToken, refreshToken, profile, cb);
+};
+
 export const logout = (req, res) => {
-  // To Do: Process Log Out
+  req.logout();
   res.redirect(routes.home);
 };
 
