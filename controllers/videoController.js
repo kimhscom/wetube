@@ -57,6 +57,7 @@ export const postUpload = async (req, res) => {
 
 export const videoDetail = async (req, res) => {
   const {
+    params: { id },
   } = req;
   try {
     const video = await Video.findById(id).populate("creator");
