@@ -418,11 +418,17 @@ input[type="submit"] {
   margin-bottom: 10px; }
 
 .videoPlayer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
   position: relative; }
   .videoPlayer:hover .videoPlayer__controls {
     opacity: 1; }
   .videoPlayer video {
-    width: 100%; }
+    width: 100%;
+    max-width: 100%; }
   .videoPlayer .videoPlayer__controls {
     opacity: 0;
     -webkit-transition: opopacity 0.4s linear;

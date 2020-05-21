@@ -1,4 +1,5 @@
 .videoPlayer {
+  display: flex;
   position: relative;
   &:hover {
     .videoPlayer__controls {
@@ -7,6 +8,7 @@
   }
   video {
     width: 100%;
+    max-width: 100%;
   }
   .videoPlayer__controls {
     opacity: 0;
