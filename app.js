@@ -14,6 +14,7 @@ import videoRouter from "./routers/videoRouter";
 import globalRouter from "./routers/globalRouter";
 
 import "./passport";
+import apiRouter from "./routers/apiRouter";
 
 const app = express();
 
@@ -43,5 +44,6 @@ app.use(localsMiddleware);
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
 app.use(routes.videos, videoRouter);
+app.use(routes.aip, apiRouter);
 
 export default app;
