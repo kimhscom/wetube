@@ -1,10 +1,10 @@
 # WeTube
 
-## Cloning Youtube with Vanilla and NodeJS
+### Cloning Youtube with Vanilla and NodeJS
 
 (👉[See the YouTube Full Stack Clone](https://still-beyond-74200.herokuapp.com/)👈)
 
-## Pages:
+> Pages:
 
 - [x] Home
 - [x] Join
@@ -17,7 +17,7 @@
 - [x] Video Detail
 - [x] Edit Video
 
-## Technologies
+> Technologies
 
 1. NodeJS
 2. ES6
@@ -30,10 +30,10 @@
 9. MongoDB
 10. Mongoose
 11. AWS S3
-12. Heroku
-13. MongoDB Atlas
+12. MongoDB Atlas
+13. Heroku
 
-## Features
+> Features
 
 1. MVC
 2. Templates
