@@ -1,4 +1,5 @@
 .videoPlayer {
+  width: 550px;
   display: flex;
   position: relative;
   &:hover {
@@ -16,52 +17,36 @@
     color: white;
     position: absolute;
     z-index: 9;
-    bottom: 5px;
+    bottom: 0px;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     padding: 10px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    font-size: 16px;
+    font-size: 12px;
     .videoPlayer__column:first-child {
+      width: 170px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .videoPlayer__volume {
+        width: 70%;
+        padding: 0;
+      }
+    }
+
+    .videoPlayer__column:last-child {
       display: flex;
       align-items: center;
-      #jsVolume {
-        margin-right: 10px;
-      }
-    }
-    .videoPlayer__volume {
-      position: absolute;
-      padding: 0;
-      opacity: 1;
-      top: -60px;
-      left: -25px;
-      transform: rotate(-90deg);
-      z-index: 10;
-      width: 80px;
-
-      input {
-        background-color: rgba(0, 0, 0, 0.7);
-        &::-webkit-slider-runnable-track {
-          background-color: $grey;
-          height: 5px;
-        }
-        &::-webkit-slider-thumb {
-          all: unset;
-          background-color: $red;
-          height: 15px;
-          width: 15px;
-          border-radius: 50%;
-          position: relative;
-          top: -5px;
-        }
-      }
-    }
-    .videoPlayer__column:last-child {
       justify-self: end;
+      #jsFullScreen {
+        margin-left: 20px;
+      }
     }
     .videoPlayer__column:nth-child(2) {
+      display: flex;
       justify-self: center;
+      align-items: center;
     }
     i {
       font-size: 25px;
