@@ -32,7 +32,11 @@ globalRouter.get(routes.gitHub, githubLogin);
 
 globalRouter.get(
   routes.githubCallback,
-  passport.authenticate("github", { failureRedirect: "/login" }),
+  passport.authenticate("github", {
+    successFlash: "Welcome",
+    failureFlash: "Can't login at this time",
+    failureRedirect: "/login",
+  }),
   postGithubLogIn
 );
 
@@ -41,7 +45,11 @@ globalRouter.get(routes.me, getMe);
 globalRouter.get(routes.facebook, facebookLogin);
 globalRouter.get(
   routes.facebookCallback,
-  passport.authenticate("facebook", { failureRedirect: "/login" }),
+  passport.authenticate("facebook", {
+    successFlash: "Welcome",
+    failureFlash: "Can't login at this time",
+    failureRedirect: "/login",
+  }),
   postFacebookLogin
 );
 
