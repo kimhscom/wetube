@@ -8,12 +8,18 @@ const fullScrnBtn = document.getElementById("jsFullScreen");
 const currentTime = document.getElementById("currentTime");
 const totalTime = document.getElementById("totalTime");
 const volumeRange = document.getElementById("jsVolume");
+const progressBar = document.getElementById("jsProgress");
 
 const registerView = () => {
   const videoId = window.location.href.split("/videos/")[1];
   fetch(`/api/${videoId}/view`, {
     method: "POST",
   });
+};
+
+const handleProgress = () => {
+  const barPos = videoPlayer.currentTime / videoPlayer.duration;
+  progressBar.style.width = barPos * 100 + "%";
 };
 
 function handlePlayClick() {
@@ -126,6 +132,7 @@ function handleDrag(event) {
 
 function init() {
   videoPlayer.volume = 0.5;
+  videoPlayer.addEventListener("timeupdate", handleProgress);
   playBtn.addEventListener("click", handlePlayClick);
   volumeBtn.addEventListener("click", handleVolumeClick);
   fullScrnBtn.addEventListener("click", goFullScreen);

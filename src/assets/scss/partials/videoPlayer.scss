@@ -3,6 +3,7 @@
   display: flex;
   position: relative;
   &:hover {
+    .videoPlayer__progress,
     .videoPlayer__controls {
       opacity: 1;
     }
@@ -10,6 +11,21 @@
   video {
     width: 100%;
     max-width: 100%;
+  }
+  .videoPlayer__progress {
+    opacity: 0;
+    transition: opopacity 0.4s linear;
+    position: absolute;
+    z-index: 9;
+    bottom: 45px;
+    width: 100%;
+    height: 8px;
+    background-color: gray;
+    cursor: pointer;
+    .videoPlayer__progress-bar {
+      height: 8px;
+      background-color: orangered;
+    }
   }
   .videoPlayer__controls {
     opacity: 0;
