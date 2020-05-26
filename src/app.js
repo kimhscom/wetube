@@ -9,6 +9,7 @@ import session from "express-session";
 import path from "path";
 import flash from "express-flash";
 import MongoStore from "connect-mongo";
+import moment from "moment";
 import { localsMiddleware } from "./middlewares";
 import routes from "./routes";
 import userRouter from "./routers/userRouter";
@@ -42,6 +43,8 @@ app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.locals.moment = require("moment");
 
 app.use(localsMiddleware);
 

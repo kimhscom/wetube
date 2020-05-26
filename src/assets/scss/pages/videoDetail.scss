@@ -4,13 +4,20 @@
   align-items: center;
   .video__info {
     width: 100%;
-    max-width: 850px;
-    margin-top: 25px;
+    max-width: 550px;
+    margin-top: 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 16px;
     button {
       width: 100px;
       margin-bottom: 25px;
     }
     .video__author {
+      display: flex;
+      align-items: center;
+      img {
+        margin-right: 12px;
+      }
       a {
         color: #3498db;
       }
@@ -25,28 +32,37 @@
     .video__title {
       font-size: 22px;
       font-weight: 300;
+      border-bottom: 3px solid rgba(0, 0, 0, 0.1);
+      padding: 20px 0 8px 0;
     }
     .video__views {
       font-size: 14px;
+      color: gray;
     }
     .video__description {
       font-size: 16px;
     }
   }
   .video__comments {
+    width: 45%;
     margin-top: 25px;
-    text-align: center;
+
     .video__comment-number {
       font-size: 18px;
     }
     .add__comment {
+      display: flex;
+      align-items: center;
       margin-top: 25px;
-      width: 100%;
+      img {
+        margin-right: 12px;
+      }
       input {
         width: 100%;
       }
     }
     .video__comments-list {
+      width: 50%;
       margin-top: 50px;
       li {
         background-color: #3498db;
