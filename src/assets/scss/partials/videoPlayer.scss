@@ -2,10 +2,11 @@
   width: 550px;
   display: flex;
   position: relative;
+  overflow: hidden;
   &:hover {
     .videoPlayer__progress,
     .videoPlayer__controls {
-      opacity: 1;
+      transform: translateY(0);
     }
   }
   video {
@@ -13,8 +14,8 @@
     max-width: 100%;
   }
   .videoPlayer__progress {
-    opacity: 0;
-    transition: opopacity 0.4s linear;
+    transform: translateY(45px);
+    transition: transform 0.4s linear;
     position: absolute;
     z-index: 9;
     bottom: 45px;
@@ -28,8 +29,8 @@
     }
   }
   .videoPlayer__controls {
-    opacity: 0;
-    transition: opopacity 0.4s linear;
+    transform: translateY(100%);
+    transition: transform 0.4s linear;
     color: white;
     position: absolute;
     z-index: 9;
