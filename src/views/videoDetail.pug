@@ -13,9 +13,9 @@ block content
             h5.video__title=video.title
             p.video__description=video.description
             if video.views === 1
-                span.video__views 1 view • #{moment(video.createdAt).format('MM/DD/YYYY')}
+                span.video__views 1 view • #{moment(video.createdAt, "YYYYMMDD").fromNow()}
             else
-                span.video__views #{video.views} views • #{moment(video.createdAt).format('MM/DD/YYYY')}
+                span.video__views #{video.views} views • #{moment(video.createdAt, "YYYYMMDD").fromNow()}
             .video__author
                 img.s-avatar(src=video.creator.avatarUrl)
                 |Upload by&nbsp;
@@ -36,4 +36,14 @@ block content
             ul.video__comments-list#jsCommentList
                 each comment in video.comments.reverse()
                     li
-                        span=comment.text
+                        img.s-avatar(src=comment.creator.avatarUrl)
+                        .video__comments-box
+                            .comment__colume
+                                span=comment.creator.name
+                                span &nbsp;•&nbsp;
+                                span #{moment(comment.createdAt,"YYYYMMDD").fromNow()}
+                                |&nbsp;
+                                if loggedUser && comment.creator.id == loggedUser.id
+                                    i.fas.fa-trash-alt#jsDelComment
+                            .comment__colume
+                                p=comment.text
