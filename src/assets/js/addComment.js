@@ -9,9 +9,24 @@ const increaseNumber = () => {
   commentNumber.innerHTML = parseInt(commentNumber.innerHTML, 10) + 1;
 };
 
+const decreaseNumber = () => {
+  commentNumber.innerHTML = parseInt(commentNumber.innerHTML, 10) - 1;
+};
+
 const getDateFormat = () => {
   const nowDate = new Date();
   return moment(nowDate, "YYYYMMDD").fromNow();
+};
+
+const delComment = (event) => {
+  const btn = event.target;
+  const commentColume = btn.parentNode;
+  const commentBox = commentColume.parentNode;
+  const li = commentBox.parentNode;
+
+  commentList.removeChild(li);
+
+  decreaseNumber();
 };
 
 const addComment = (avatar, name, comment) => {
@@ -38,6 +53,7 @@ const addComment = (avatar, name, comment) => {
   symbolSpan.innerHTML = "&nbsp;•&nbsp;";
   dateSpan.innerHTML = getDateFormat();
   spaceSpan.innerHTML = "&nbsp;";
+  delIcon.addEventListener("click", delComment);
   p.innerHTML = comment;
 
   secondCommentColumn.appendChild(p);
