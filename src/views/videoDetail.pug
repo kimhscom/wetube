@@ -32,7 +32,9 @@ block content
             if loggedUser
                 form.add__comment#jsAddComment
                     img.s-avatar(src=loggedUser.avatarUrl)
-                    input(type="text", placeholder="Add a comment")
+                    .add__comment-block
+                        span=loggedUser.name
+                        input(type="text", placeholder="Add a comment")
             ul.video__comments-list#jsCommentList
                 each comment in video.comments.reverse()
                     li
@@ -42,8 +44,8 @@ block content
                                 span=comment.creator.name
                                 span &nbsp;•&nbsp;
                                 span #{moment(comment.createdAt,"YYYYMMDD").fromNow()}
-                                |&nbsp;
+                                span &nbsp;
                                 if loggedUser && comment.creator.id == loggedUser.id
-                                    i.fas.fa-trash-alt#jsDelComment
+                                    i.fas.fa-trash-alt
                             .comment__colume
                                 p=comment.text
