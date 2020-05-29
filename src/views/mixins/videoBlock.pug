@@ -7,3 +7,4 @@ mixin videoBlock(video = {})
                 h6.videoBlock__views 1 view
             else
                 h6.videoBlock__views #{video.views} views
+            h6.videoBlock__date=moment(video.date,"YYYYMMDD").fromNow()
