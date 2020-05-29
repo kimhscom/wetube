@@ -23,13 +23,11 @@
       }
       ul {
         display: flex;
+        color: white;
         font-weight: 600;
         text-transform: uppercase;
         li:not(:last-child) {
           margin-right: 15px;
-        }
-        a {
-          color: white;
         }
       }
       form {
