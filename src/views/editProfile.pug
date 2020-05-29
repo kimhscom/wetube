@@ -6,6 +6,8 @@ block content
             .fileUpload
                 label(for="avatar") Avatar
                 input(type="file", id="avatar", name="avatar", accept="image/*")
+            h3 Name
             input(type="text", placeholder="Name", name="name", value=loggedUser.name)
+            h3 Email
             input(type="email", placeholder="Email", name="email", value=loggedUser.email)
             input(type="submit", value="Update Profile")
