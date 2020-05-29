@@ -7,10 +7,11 @@ block content
     .search__videos
         if videos.length === 0
             h5 No Videos Found
-        each item in videos
+        each item in videos.reverse()
             +videoBlock({
                 title:item.title,
                 views:item.views,
-                videoFile:item.videoFile,
-                id: item.id 
+                videoFile:item.fileUrl,
+                id: item.id,
+                date:item.createdAt
             })
