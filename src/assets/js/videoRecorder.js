@@ -19,6 +19,7 @@ const stopRecording = () => {
   streamObject.getVideoTracks()[0].stop();
   recordBtn.removeEventListener("click", stopRecording);
   recordBtn.addEventListener("click", getVideo);
+  recordBtn.style.backgroundColor = "#3498db";
   recordBtn.innerHTML = "Start Recording";
 };
 
@@ -38,11 +39,13 @@ const getVideo = async () => {
     videoPreview.srcObject = stream;
     videoPreview.muted = true;
     videoPreview.play();
+    recordBtn.style.backgroundColor = "red";
     recordBtn.innerHTML = "Stop recording";
     streamObject = stream;
     startRecording();
   } catch (error) {
-    recordBtn.innerHTML = "☹️ Cant record";
+    recordBtn.style.backgroundColor = "red";
+    recordBtn.innerHTML = "Can't record";
   } finally {
     recordBtn.removeEventListener("click", getVideo);
   }
