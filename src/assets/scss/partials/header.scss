@@ -1,6 +1,8 @@
 .header {
+  width: 100%;
   background-color: $red;
-  margin-bottom: 50px;
+  position: fixed;
+  z-index: 1;
   .header__wrapper {
     padding: 10px 30px;
     width: 100%;
@@ -48,4 +50,8 @@
       }
     }
   }
+}
+
+.header.header-dark {
+  background-color: purple;
 }
