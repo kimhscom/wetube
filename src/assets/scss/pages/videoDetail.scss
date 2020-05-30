@@ -99,3 +99,14 @@
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .video-detail__container {
+    .video__info {
+      padding: 0 20px;
+    }
+    .video__comments {
+      width: 90%;
+    }
+  }
+}

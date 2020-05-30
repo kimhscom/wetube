@@ -6,3 +6,10 @@
   padding: 0 30px;
   padding-top: 100px;
 }
+
+@media screen and (max-width: 768px) {
+  .home-videos {
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -18,3 +18,16 @@
   grid-auto-rows: minmax(300px, auto);
   gap: 30px 20px;
 }
+
+@media screen and (max-width: 768px) {
+  .search__videos {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .search__header {
+    h3 {
+      font-size: 20px;
+    }
+  }
+}

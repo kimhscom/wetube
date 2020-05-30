@@ -72,3 +72,20 @@
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .videoPlayer {
+    width: 300px;
+    .videoPlayer__controls {
+      font-size: 8px;
+      .videoPlayer__column:first-child {
+        width: 100px;
+      }
+      .videoPlayer__column:nth-child(2) {
+        i {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
