@@ -30,7 +30,7 @@ passport.use(
       clientSecret: process.env.FB_SECRET,
       callbackURL: process.env.PRODUCTION
         ? `https://still-beyond-74200.herokuapp.com${routes.facebookCallback}`
-        : `https://7bb8110f.ngrok.io${routes.facebookCallback}`,
+        : `http://localhost:4000${routes.facebookCallback}`,
       profileFields: ["id", "displayName", "photos", "email"],
       scope: ["public_profile", "email"],
     },
