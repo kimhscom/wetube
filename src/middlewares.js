@@ -1,6 +1,8 @@
 import multer from "multer";
 import multerS3 from "multer-s3";
 import aws from "aws-sdk";
+import path from "path";
+import moment from "moment";
 import routes from "./routes";
 
 export const s3 = new aws.S3({
@@ -14,6 +16,15 @@ const multerVideo = multer({
     s3,
     acl: "public-read",
     bucket: "wetube-another/video",
+    key: (req, file, cb) => {
+      const extension = path.extname(file.originalname);
+      cb(
+        null,
+        Math.random().toString(36).substring(2, 12) +
+          Date.now().toString() +
+          extension
+      );
+    },
   }),
 });
 
@@ -31,6 +42,7 @@ export const uploadAvatar = multerAvatar.single("avatar");
 export const localsMiddleware = (req, res, next) => {
   res.locals.siteName = "WeTube";
   res.locals.routes = routes;
+  res.locals.moment = moment;
   res.locals.loggedUser = req.user || null;
   next();
 };
