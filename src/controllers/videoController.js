@@ -1,7 +1,6 @@
 import routes from "../routes";
 import Video from "../models/Video";
 import Comment from "../models/Comment";
-import User from "../models/User";
 
 // Home
 
@@ -169,15 +168,14 @@ export const postAddComment = async (req, res) => {
 // Delete Comment
 export const postDelComment = async (req, res) => {
   const {
-    params: { id: commentId },
-    body: { userId, videoId },
+    params: { id },
+    body: { commentid },
   } = req;
   try {
-    await Comment.findByIdAndDelete(commentId);
-    await Video.updateOne({ _id: videoId }, { $pull: { comments: commentId } });
-    await User.updateOne({ _id: userId }, { $pull: { comments: commentId } });
+    await Video.findById(id);
+    await Comment.findOneAndRemove({ _id: commentid });
+    res.status(200);
   } catch (error) {
-    console.log(error);
     res.status(400);
   } finally {
     res.end();

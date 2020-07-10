@@ -9,24 +9,9 @@ const increaseNumber = () => {
   commentNumber.innerHTML = parseInt(commentNumber.innerHTML, 10) + 1;
 };
 
-const decreaseNumber = () => {
-  commentNumber.innerHTML = parseInt(commentNumber.innerHTML, 10) - 1;
-};
-
 const getDateFormat = () => {
   const nowDate = new Date();
   return moment(nowDate, "YYYYMMDD").fromNow();
-};
-
-const delComment = (event) => {
-  const btn = event.target;
-  const commentColume = btn.parentNode;
-  const commentBox = commentColume.parentNode;
-  const li = commentBox.parentNode;
-
-  commentList.removeChild(li);
-
-  decreaseNumber();
 };
 
 const addComment = (avatar, name, comment) => {
@@ -39,21 +24,18 @@ const addComment = (avatar, name, comment) => {
   const symbolSpan = document.createElement("span");
   const dateSpan = document.createElement("span");
   const spaceSpan = document.createElement("span");
-  const delIcon = document.createElement("i");
   const p = document.createElement("p");
 
   img.classList.add("s-avatar");
   commentBox.classList.add("video__comments-box");
   firstCommentColumn.classList.add("comment__colume");
   secondCommentColumn.classList.add("comment__colume");
-  delIcon.classList.add("fas", "fa-trash-alt");
 
   img.src = avatar;
   nameSpan.innerHTML = name;
   symbolSpan.innerHTML = "&nbsp;•&nbsp;";
   dateSpan.innerHTML = getDateFormat();
   spaceSpan.innerHTML = "&nbsp;";
-  delIcon.addEventListener("click", delComment);
   p.innerHTML = comment;
 
   secondCommentColumn.appendChild(p);
@@ -61,7 +43,6 @@ const addComment = (avatar, name, comment) => {
   firstCommentColumn.appendChild(symbolSpan);
   firstCommentColumn.appendChild(dateSpan);
   firstCommentColumn.appendChild(spaceSpan);
-  firstCommentColumn.appendChild(delIcon);
   commentBox.appendChild(firstCommentColumn);
   commentBox.appendChild(secondCommentColumn);
   li.appendChild(img);

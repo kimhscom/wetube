@@ -46,6 +46,6 @@ block content
                                 span #{moment(comment.createdAt,"YYYYMMDD").fromNow()}
                                 span &nbsp;
                                 if loggedUser && comment.creator.id == loggedUser.id
-                                    i.fas.fa-trash-alt
+                                    i.fas.fa-trash-alt.del__Comment(data-commentid=comment.id)
                             .comment__colume
                                 p=comment.text
