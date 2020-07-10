@@ -1,6 +1,7 @@
 import routes from "../routes";
 import Video from "../models/Video";
 import Comment from "../models/Comment";
+import { s3 } from "../middlewares";
 
 // Home
 
@@ -113,9 +114,24 @@ export const deleteVideo = async (req, res) => {
   } = req;
   try {
     const video = await Video.findById(id);
+    const regex = /(http[s]?:\/\/)?([^\/\s]+\/)(.*)/;
+    const filePath = await video.fileUrl.match(regex)[3];
+    const delFile = {
+      Bucket: process.env.AWS_BUCKET,
+      Key: filePath,
+    };
     if (String(video.creator) !== req.user.id) {
       throw Error();
     } else {
+      await s3
+        .deleteObject(delFile, (err) => {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log("The file has been removed");
+          }
+        })
+        .promise();
       await Video.findByIdAndRemove({ _id: id });
     }
   } catch (error) {
@@ -158,6 +174,7 @@ export const postAddComment = async (req, res) => {
     });
     video.comments.push(newComment.id);
     video.save();
+    res.status(200);
   } catch (error) {
     res.status(400);
   } finally {
@@ -172,8 +189,9 @@ export const postDelComment = async (req, res) => {
     body: { commentid },
   } = req;
   try {
-    await Video.findById(id);
+    const video = await Video.findById(id);
     await Comment.findOneAndRemove({ _id: commentid });
+    video.save();
     res.status(200);
   } catch (error) {
     res.status(400);
