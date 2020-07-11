@@ -2,7 +2,7 @@ mixin videoBlock(video = {})
     .videoBlock
         a(href=routes.videoDetail(video.id))
             video.videoBlock__thumbnail(src=video.videoFile, controls=false)
-            h4.videoBlock__title=video.title
+            h4.videoBlock__title #{video.title.length > 20 ? `${video.title.substring(0, 20)}...` : video.title}
             if video.views === 1
                 h6.videoBlock__views 1 view
             else
