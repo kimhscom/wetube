@@ -173,8 +173,9 @@ export const postAddComment = async (req, res) => {
       creator: user.id,
     });
     video.comments.push(newComment.id);
+    const commentId = newComment.id;
     video.save();
-    res.status(200);
+    res.status(200).json({ commentId });
   } catch (error) {
     res.status(400);
   } finally {
@@ -189,9 +190,8 @@ export const postDelComment = async (req, res) => {
     body: { commentid },
   } = req;
   try {
-    const video = await Video.findById(id);
+    await Video.findById(id);
     await Comment.findOneAndRemove({ _id: commentid });
-    video.save();
     res.status(200);
   } catch (error) {
     res.status(400);

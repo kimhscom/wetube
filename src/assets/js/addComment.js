@@ -9,12 +9,41 @@ const increaseNumber = () => {
   commentNumber.innerHTML = parseInt(commentNumber.innerHTML, 10) + 1;
 };
 
+const decreaseComment = () => {
+  commentNumber.innerHTML = parseInt(commentNumber.innerHTML, 10) - 1;
+};
+
 const getDateFormat = () => {
   const nowDate = new Date();
   return moment(nowDate, "YYYYMMDD").fromNow();
 };
 
-const addComment = (avatar, name, comment) => {
+const removeComment = (target) => {
+  const ul = target.previousSibling.parentNode.parentNode.parentNode.parentNode;
+  const li = target.previousSibling.parentNode.parentNode.parentNode;
+  ul.removeChild(li);
+
+  decreaseComment();
+};
+
+const delComment = async (event) => {
+  event.preventDefault();
+  const videoId = window.location.href.split("/videos/")[1];
+  const { target } = event;
+  const { commentid } = target.dataset;
+  const respond = await axios({
+    url: `/api/${videoId}/del-comment`,
+    method: "POST",
+    data: {
+      commentid,
+    },
+  });
+  if (respond.status === 200) {
+    removeComment(target);
+  }
+};
+
+const addComment = (avatar, name, comment, commentId) => {
   const li = document.createElement("li");
   const img = document.createElement("img");
   const commentBox = document.createElement("div");
@@ -24,18 +53,22 @@ const addComment = (avatar, name, comment) => {
   const symbolSpan = document.createElement("span");
   const dateSpan = document.createElement("span");
   const spaceSpan = document.createElement("span");
+  const delIcon = document.createElement("i");
   const p = document.createElement("p");
 
   img.classList.add("s-avatar");
   commentBox.classList.add("video__comments-box");
   firstCommentColumn.classList.add("comment__colume");
   secondCommentColumn.classList.add("comment__colume");
+  delIcon.classList.add("fas", "fa-trash-alt");
 
   img.src = avatar;
   nameSpan.innerHTML = name;
   symbolSpan.innerHTML = "&nbsp;•&nbsp;";
   dateSpan.innerHTML = getDateFormat();
   spaceSpan.innerHTML = "&nbsp;";
+  delIcon.dataset.commentid = commentId;
+  delIcon.addEventListener("click", delComment);
   p.innerHTML = comment;
 
   secondCommentColumn.appendChild(p);
@@ -43,6 +76,7 @@ const addComment = (avatar, name, comment) => {
   firstCommentColumn.appendChild(symbolSpan);
   firstCommentColumn.appendChild(dateSpan);
   firstCommentColumn.appendChild(spaceSpan);
+  firstCommentColumn.appendChild(delIcon);
   commentBox.appendChild(firstCommentColumn);
   commentBox.appendChild(secondCommentColumn);
   li.appendChild(img);
@@ -62,7 +96,10 @@ const sendComment = async (avatar, name, comment) => {
     },
   });
   if (response.status === 200) {
-    addComment(avatar, name, comment);
+    const {
+      data: { commentId },
+    } = response;
+    addComment(avatar, name, comment, commentId);
   }
 };
 
