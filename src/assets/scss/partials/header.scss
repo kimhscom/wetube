@@ -34,10 +34,11 @@
       }
       form {
         width: 100%;
+        display: flex;
         input {
           padding: 7px 10px;
-          width: 100%;
-          border-radius: 5px;
+          width: 90%;
+          border-radius: 0px;
           font-size: 14px;
           color: $black;
           font-weight: 600;
@@ -45,6 +46,15 @@
           &::placeholder {
             font-weight: 300;
             color: rgba(0, 0, 0, 0.7);
+          }
+        }
+        button {
+          width: 10%;
+          background-color: #f0f0f0;
+          border-radius: 0px;
+          i {
+            color: rgba(0, 0, 0, 0.7);
+            font-size: 18px;
           }
         }
       }
@@ -74,6 +84,15 @@
     .header__wrapper {
       grid-template-rows: repeat(1, 1fr);
       .header__column {
+        form {
+          width: 100%;
+          input {
+            width: 80%;
+          }
+          button {
+            width: 20%;
+          }
+        }
         &:nth-child(2) {
           width: 180px;
         }
