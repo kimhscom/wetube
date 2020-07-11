@@ -2,9 +2,15 @@ mixin videoBlock(video = {})
     .videoBlock
         a(href=routes.videoDetail(video.id))
             video.videoBlock__thumbnail(src=video.videoFile, controls=false)
-            h4.videoBlock__title #{video.title.length > 20 ? `${video.title.substring(0, 20)}...` : video.title}
-            if video.views === 1
-                h6.videoBlock__views 1 view
-            else
-                h6.videoBlock__views #{video.views} views
-            h6.videoBlock__date=moment(video.date,"YYYYMMDD").fromNow()
+            .videoBlock__information
+                .videoBlock__column
+                    img.s-avatar(src=video.creator.avatarUrl)
+                .videoBlock__column
+                    h4.videoBlock__title #{video.title.length > 20 ? `${video.title.substring(0, 20)}...` : video.title}
+                    h6.videoBlock__creator=video.creator.name
+                    .videoBlock__row
+                        if video.views === 1
+                            h6.videoBlock__row-views 1 view •&nbsp
+                        else
+                            h6.videoBlock__row-views #{video.views} views •&nbsp
+                        h6.videoBlock__row-date=moment(video.date,"YYYYMMDD").fromNow()

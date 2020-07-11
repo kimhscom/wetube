@@ -8,6 +8,16 @@
     font-size: 15px;
     margin-bottom: 10px;
   }
+  .videoBlock__information {
+    display: flex;
+    align-items: center;
+    .videoBlock__column:last-child {
+      margin-left: 10px;
+      .videoBlock__row {
+        display: flex;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 768px) {
