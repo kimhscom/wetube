@@ -10,6 +10,7 @@ block content
         each item in videos.reverse()
             +videoBlock({
                 title:item.title,
+                creator:item.creator,
                 views:item.views,
                 videoFile:item.fileUrl,
                 id: item.id,
