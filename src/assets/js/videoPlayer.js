@@ -2,6 +2,7 @@ import getBlobDuration from "get-blob-duration";
 
 const videoContainer = document.getElementById("jsVideoPlayer");
 const videoPlayer = document.querySelector("#jsVideoPlayer video");
+const controls = document.querySelector(".videoPlayer__controls");
 const playBtn = document.getElementById("jsPlayButton");
 const volumeBtn = document.getElementById("jsVolumeBtn");
 const fullScrnBtn = document.getElementById("jsFullScreen");
@@ -11,11 +12,29 @@ const volumeRange = document.getElementById("jsVolume");
 const progress = document.getElementById("jsProgress");
 const progressBar = document.getElementById("jsProgressBar");
 
+let hideTimeout = null;
+
 const registerView = () => {
   const videoId = window.location.href.split("/videos/")[1];
   fetch(`/api/${videoId}/view`, {
     method: "POST",
   });
+};
+
+const hideControls = () => {
+  controls.style.transform = "translateY(45px)";
+  progress.style.transform = "translateY(45px)";
+  videoContainer.style.cursor = "none";
+};
+
+const showControls = () => {
+  if (hideTimeout) {
+    clearTimeout(hideTimeout);
+  }
+  controls.style.transform = "translateY(0)";
+  progress.style.transform = "translateY(0)";
+  videoContainer.style.cursor = "default";
+  hideTimeout = setTimeout(hideControls, 3000);
 };
 
 const handleProgress = () => {
@@ -32,7 +51,7 @@ const clickProgress = (event) => {
   videoPlayer.currentTime = pos * videoPlayer.duration;
 };
 
-function handlePlayClick() {
+const handlePlayClick = () => {
   if (videoPlayer.paused) {
     videoPlayer.play();
     playBtn.innerHTML = '<i class="fas fa-pause"></i>';
@@ -40,9 +59,16 @@ function handlePlayClick() {
     videoPlayer.pause();
     playBtn.innerHTML = '<i class="fas fa-play"></i>';
   }
-}
+};
 
-function handleVolumeClick() {
+const handleKeyDown = (event) => {
+  const { code } = event;
+  if (code === "Space") {
+    handlePlayClick();
+  }
+};
+
+const handleVolumeClick = () => {
   if (videoPlayer.muted) {
     videoPlayer.muted = false;
     volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
@@ -52,9 +78,9 @@ function handleVolumeClick() {
     videoPlayer.muted = true;
     volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
   }
-}
+};
 
-function exitFullScreen() {
+const exitFullScreen = () => {
   fullScrnBtn.innerHTML = '<i class="fas fa-expand"></i>';
   fullScrnBtn.addEventListener("click", goFullScreen);
   if (document.exitFullscreen) {
@@ -66,9 +92,9 @@ function exitFullScreen() {
   } else if (document.msExitFullscreen) {
     document.msExitFullscreen();
   }
-}
+};
 
-function goFullScreen() {
+const goFullScreen = () => {
   if (videoContainer.requestFullscreen) {
     videoContainer.requestFullscreen();
   } else if (videoContainer.mozRequestFullScreen) {
@@ -81,7 +107,7 @@ function goFullScreen() {
   fullScrnBtn.innerHTML = '<i class="fas fa-compress"></i>';
   fullScrnBtn.removeEventListener("click", goFullScreen);
   fullScrnBtn.addEventListener("click", exitFullScreen);
-}
+};
 
 const formatDate = (seconds) => {
   const secondsNumber = parseInt(seconds, 10);
@@ -101,11 +127,11 @@ const formatDate = (seconds) => {
   return `${hours}:${minutes}:${totalSeconds}`;
 };
 
-function getCurrentTime() {
+const getCurrentTime = () => {
   currentTime.innerHTML = formatDate(Math.floor(videoPlayer.currentTime));
-}
+};
 
-async function setTotalTime() {
+const setTotalTime = async () => {
   let duration;
   if (!isFinite(videoPlayer.duration)) {
     const blob = await fetch(videoPlayer.src).then((response) =>
@@ -118,15 +144,15 @@ async function setTotalTime() {
   const totalTimeString = formatDate(duration);
   totalTime.innerHTML = totalTimeString;
   setInterval(getCurrentTime, 1000);
-}
+};
 
-function handleEnded() {
+const handleEnded = () => {
   registerView();
   videoPlayer.currentTime = 0;
   playBtn.innerHTML = '<i class="fas fa-play"></i>';
-}
+};
 
-function handleDrag(event) {
+const handleDrag = (event) => {
   const {
     target: { value },
   } = event;
@@ -138,9 +164,9 @@ function handleDrag(event) {
   } else {
     volumeBtn.innerHTML = '<i class="fas fa-volume-off"></i>';
   }
-}
+};
 
-function init() {
+const init = () => {
   videoPlayer.volume = 0.5;
   videoPlayer.addEventListener("timeupdate", handleProgress);
   progress.addEventListener("click", clickProgress);
@@ -152,7 +178,11 @@ function init() {
   };
   videoPlayer.addEventListener("ended", handleEnded);
   volumeRange.addEventListener("input", handleDrag);
-}
+  document.addEventListener("keydown", handleKeyDown);
+  videoContainer.addEventListener("mousemove", showControls);
+  videoContainer.addEventListener("mouseleave", hideControls);
+  videoPlayer.addEventListener("click", handlePlayClick);
+};
 
 if (videoContainer) {
   init();

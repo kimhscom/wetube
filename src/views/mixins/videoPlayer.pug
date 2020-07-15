@@ -2,7 +2,7 @@ mixin videoPlayer(video = {})
     .videoPlayer#jsVideoPlayer
         video(src=video.src)
         progress.videoPlayer__progress#jsProgress(value="0", min="0")
-            span.videoPlayer__progress-bar#jsProgressBar
+            span#jsProgressBar
         .videoPlayer__controls
             .videoPlayer__column
                 span#jsVolumeBtn
