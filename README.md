@@ -6,16 +6,45 @@
 
 > Pages:
 
-- [x] Home
-- [x] Join
-- [x] Login
-- [x] Search
-- [x] User Detail
-- [x] Edit Profile
-- [x] Change Password
-- [x] Upload
-- [x] Video Detail
-- [x] Edit Video
+1. Home
+
+<img width="600px" src="https://user-images.githubusercontent.com/47877911/93988995-55048b80-fdc4-11ea-9ec5-c59ded55fe70.png">
+
+2. Video Detail
+
+<img width="600px" src="https://user-images.githubusercontent.com/47877911/93991405-3653c400-fdc7-11ea-845d-af7a435e40ef.png">
+
+3. Search
+
+<img width="600px" src="https://user-images.githubusercontent.com/47877911/93990152-c0029200-fdc5-11ea-8428-4a68ec8c9aae.png">
+
+4. Join
+
+<img width="600px" src="https://user-images.githubusercontent.com/47877911/93989856-5f735500-fdc5-11ea-824e-8a73c193a1d5.png">
+
+5. Login
+
+<img width="600px" src="https://user-images.githubusercontent.com/47877911/93989976-8598f500-fdc5-11ea-83bc-ecf12f997bab.png">
+
+6. User Detail
+
+<img width="600px" src="https://user-images.githubusercontent.com/47877911/93990420-0d7eff00-fdc6-11ea-9808-0a4b646342af.png">
+
+7. Edit Profile
+
+<img width="600px" src="https://user-images.githubusercontent.com/47877911/93990759-7797a400-fdc6-11ea-8226-03f73fbdbc1d.png">
+
+8. Change Password
+
+<img width="600px" src="https://user-images.githubusercontent.com/47877911/93990884-9f870780-fdc6-11ea-9740-d10d768361ea.png">
+
+9. Upload
+
+<img width="600px" src="https://user-images.githubusercontent.com/47877911/93991108-df4def00-fdc6-11ea-82c9-76d00b28c067.png">
+
+10. Edit Video
+
+<img width="600px" src="https://user-images.githubusercontent.com/47877911/93991582-70bd6100-fdc7-11ea-9739-f522cb313968.png">
 
 > Technologies
 
