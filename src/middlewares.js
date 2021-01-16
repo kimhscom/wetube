@@ -3,7 +3,7 @@ import multerS3 from "multer-s3";
 import aws from "aws-sdk";
 import path from "path";
 import moment from "moment";
-import https from "https";
+// import https from "https";
 import routes from "./routes";
 
 export const s3 = new aws.S3({
@@ -65,6 +65,8 @@ export const onlyPrivate = (req, res, next) => {
 };
 
 // Prevent sleep in Heroku server
+/*
 setInterval(() => {
   https.get("https://still-beyond-74200.herokuapp.com");
 }, 600000); // every 10 minutes
+*/
